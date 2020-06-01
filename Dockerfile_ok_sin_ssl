@@ -1,0 +1,15 @@
+FROM centos:7
+RUN \
+	yum -y install \
+	 httpd \
+	 php \
+	 php-cli \
+	 php-common \
+	 git \
+	 mod_ssl \
+	 openssl  
+RUN echo "<?php phpinfo() ?>" > /var/www/html/hola.php
+
+RUN git clone https://github.com/frank-ec/admision.git /var/www/html/admision
+
+CMD apachectl -DFOREGROUND
